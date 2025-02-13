@@ -1,9 +1,23 @@
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { dataStore } from '@/stores/dataStore.js';
+import { storeToRefs } from 'pinia';
 const router = useRouter();
+const dataStores = dataStore();
+
+let harumarket_product_name = ref("");
 
 const move = function(url){
-  router.replace(url);
+  router.replace({
+    path: url,
+    query: { t: Date.now() } // 강제 변경 감지
+  });
+}
+
+const haruMarket_productCategory_name_search = function(){
+  dataStores.harumarket_product_name = harumarket_product_name.value;
+  move("/product_search");
 }
 </script>
 
@@ -13,10 +27,10 @@ const move = function(url){
       <div class="col-2 d-flex justify-content-center align-items-center">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link text-black" aria-current="page" href="/pages/login/login.php">LOGIN</a>
+            <a class="nav-link text-black" style="cursor:pointer" aria-current="page" href="/pages/login/login.php">LOGIN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-black" href="/pages/join/join1.php">JOIN</a>
+            <a class="nav-link text-black" style="cursor:pointer" @click="move('/join1')">JOIN</a>
           </li>
         </ul>
       </div>
@@ -27,8 +41,8 @@ const move = function(url){
       </div> 
       <div class="col-2 d-flex align-items-center">
         <div class="input-group m-3">
-          <input type="text" class="form-control" placeholder="상품을 검색하세요." aria-label="Search" style="width:20px;" id="haruMarket_productCategory_name_search">
-          <button class="btn btn-outline-secondary" type="button" id="haruMarket_productCategory_name_searchbtn">
+          <input type="text" class="form-control" placeholder="상품을 검색하세요." aria-label="Search" style="width:20px;" v-model="harumarket_product_name" @keyup.enter="haruMarket_productCategory_name_search">
+          <button class="btn btn-outline-secondary" type="button" id="haruMarket_productCategory_name_searchbtn" @click="haruMarket_productCategory_name_search">
             <i class="bi bi-search"></i>
           </button>
         </div>
