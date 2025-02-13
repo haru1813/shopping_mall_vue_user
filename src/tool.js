@@ -60,3 +60,5 @@ export const ajax_send3 = function(json, url,type){
   });
   return return_date;
 };
+
+// 테스트
