@@ -1,11 +1,25 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
+import { dataStore } from '@/stores/dataStore.js';
 
 const router = useRouter();
+const dataStores = dataStore();
+
+onBeforeMount(() => {
+    if(dataStores.authorization != ''){
+        router.replace({
+            path: `/`,
+            query: { t: Date.now() } // 강제 변경 감지
+        });
+    }
+});
+
 let check1 = ref(false);
 let check2 = ref(false);
 let allCheck = ref(false);
+
+
 
 const allCheckf = function(){
     check1.value = allCheck.value;

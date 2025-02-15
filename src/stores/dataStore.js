@@ -5,11 +5,13 @@ export const dataStore = defineStore('dataStore', () => {
     const haruMarket_productCategory_index = ref(0);
     const harumarket_product_index = ref(0);
     const harumarket_product_name = ref("");
+    const authorization = ref("");
   
     return { 
       haruMarket_productCategory_index, 
       harumarket_product_index,
       harumarket_product_name,
+      authorization,
     };
   }, {
     persist: {

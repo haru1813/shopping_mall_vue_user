@@ -2,6 +2,10 @@
 import { onMounted,ref } from 'vue';
 import { ajax_send } from '../tool.js';
 import { dataStore } from '@/stores/dataStore.js';
+import { useRouter } from 'vue-router';
+
+const dataStores = dataStore();
+const router = useRouter();
 
 const swiper = ref(null);
 
@@ -40,6 +44,14 @@ const srcExport = function(harumarket_product_picture){
   const srcValue = match[1];
   return srcValue;
 }
+
+const product_detail = function(harumarket_product_index){
+  dataStores.harumarket_product_index = harumarket_product_index;
+  router.replace({
+    path: "/product_detail",
+    query: { t: Date.now() } // 강제 변경 감지
+  });
+}
 </script>
 
 <template>
@@ -61,9 +73,9 @@ const srcExport = function(harumarket_product_picture){
                 <div class="swiper-wrapper">
                   <div class="swiper-slide" v-for="(advertise_item, index) in advertise_items" :key="index">
                     <div class="card" style="width: 18rem;">
-                      <img :src="srcExport(advertise_item.harumarket_product_picture)" style="cursor:pointer" class="img-thumbnail img-link"></img>
+                      <img :src="srcExport(advertise_item.harumarket_product_picture)" style="cursor:pointer" class="img-thumbnail img-link" @click="product_detail(advertise_item.harumarket_product_index)"></img>
                       <div class="card-body">
-                        <p class="card-title fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor:pointer;">{{ advertise_item.harumarket_product_name }}</p>
+                        <p class="card-title fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor:pointer;" @click="product_detail(advertise_item.harumarket_product_index)">{{ advertise_item.harumarket_product_name }}</p>
                         <span class="badge rounded-pill text-bg-secondary" style="text-decoration: line-through;">{{ advertise_item.harumarket_product_originPrice }}원</span>
                         <span class="badge rounded-pill text-bg-primary">{{ advertise_item.harumarket_product_salePrice }}원</span><br/>
                         <span class="badge rounded-pill text-bg-success">무료배송</span> 
@@ -87,9 +99,9 @@ const srcExport = function(harumarket_product_picture){
           <div class="row">
             <div class="col-2 pb-3" v-for="(new_products_item, index) in new_products_items" :key="index">
               <div class="card" style="width: 18rem;">
-                <img :src="srcExport(new_products_item.harumarket_product_picture)" style="cursor:pointer" class="img-thumbnail img-link"></img>
+                <img :src="srcExport(new_products_item.harumarket_product_picture)" style="cursor:pointer" class="img-thumbnail img-link" @click="product_detail(new_products_item.harumarket_product_index)"></img>
                 <div class="card-body">
-                  <p class="card-title fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor:pointer;">{{ new_products_item.harumarket_product_name }}</p>
+                  <p class="card-title fs-6" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; cursor:pointer;" @click="product_detail(new_products_item.harumarket_product_index)">{{ new_products_item.harumarket_product_name }}</p>
                   <span class="badge rounded-pill text-bg-secondary" style="text-decoration: line-through;">{{ new_products_item.harumarket_product_originPrice }}원</span>
                   <span class="badge rounded-pill text-bg-primary">{{ new_products_item.harumarket_product_salePrice }}원</span><br/>
                   <span class="badge rounded-pill text-bg-success">무료배송</span> 

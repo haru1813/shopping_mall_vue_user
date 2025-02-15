@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted,ref,watchEffect, watch } from 'vue';
-import { ajax_send,ajax_send3 } from '@/tool.js';
+import { ajax_send } from '@/tool.js';
 import { dataStore } from '@/stores/dataStore.js';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
