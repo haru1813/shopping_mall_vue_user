@@ -23,6 +23,7 @@ const haruMarket_productCategory_name_search = function(){
 }
 
 const logout = function(){
+  toastr.error("로그아웃 되었습니다.");
   dataStores.authorization = "";
   router.go(0);
 }
@@ -42,7 +43,7 @@ const move2 = async function(url){
       });
     }
     else{
-      toastr.error("로그인 유효기간이 만료되었습니다.");
+      toastr.error("로그아웃 되었습니다.");
       dataStores.authorization = "";
       router.replace({
         path: "/",
@@ -99,10 +100,10 @@ const move2 = async function(url){
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-black" data-bs-toggle="dropdown" href="#" style="cursor:pointer" role="button" aria-expanded="false">MY PAGE</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" style="cursor:pointer" @click="move2('/login')">회원 정보 수정</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer" href="/pages/user/change1.php">비밀번호 변경</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer" href="/pages/user/change1.php">장바구니</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer" href="/pages/user/change1.php">주문 조회</a></li>
+              <li><a class="dropdown-item" style="cursor:pointer" @click="move2('/change1')">회원 정보 수정</a></li>
+              <li><a class="dropdown-item" style="cursor:pointer" @click="move2('/change2')">비밀번호 변경</a></li>
+              <li><a class="dropdown-item" style="cursor:pointer" @click="move2('/basket')">장바구니</a></li>
+              <li><a class="dropdown-item" style="cursor:pointer" @click="move2('/order')">주문 조회</a></li>
             </ul>
           </li>
         </ul>

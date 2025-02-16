@@ -3,6 +3,8 @@ import { ref,computed,onMounted,watch } from 'vue';
 import { ajax_send,sendData,httpRequest } from '@/tool.js';
 import { dataStore } from '@/stores/dataStore.js';
 import { useRouter } from 'vue-router';
+import { buy } from '@/stores/buy.js';
+const buyStores = buy();
 
 const router = useRouter();
 const dataStores = dataStore();
@@ -198,8 +200,6 @@ const option_select = function(){
         harumarket_product_salePrice: harumarket_product_salePrice.value
     }
 
-    debugger;
-    
     if(harumarket_product_colorView.value == 1 && harumarket_product_sizeView.value == 1){
         if(harumarket_product_color.value?.value == "" || harumarket_product_size.value?.value == "")
             return;
@@ -207,7 +207,7 @@ const option_select = function(){
         newRowData.harumarket_productColor_name = harumarket_product_color.value?.options[harumarket_product_color.value?.selectedIndex].innerText;
         newRowData.harumarket_productColor_index = harumarket_product_color.value?.value;
         newRowData.harumarket_productSize_name = harumarket_product_size.value?.options[harumarket_product_size.value?.selectedIndex].innerText;
-        newRowData.harumarket_productSize_index = harumarket_product_color.value?.value;
+        newRowData.harumarket_productSize_index = harumarket_product_size.value?.value;
     }
     if(harumarket_product_colorView.value == 1 && harumarket_product_sizeView.value == 0){
         if(harumarket_product_color.value?.value == "")
@@ -221,7 +221,7 @@ const option_select = function(){
             return;
 
         newRowData.harumarket_productSize_name = harumarket_product_size.value?.options[harumarket_product_size.value?.selectedIndex].innerText;
-        newRowData.harumarket_productSize_index = harumarket_product_color.value?.value;
+        newRowData.harumarket_productSize_index = harumarket_product_size.value?.value;
     }
 
     const allData = gridInstance.getData();
@@ -315,7 +315,7 @@ const basket = async function(){
                 data = await httpRequest("POST","http://localhost:8080/user/busket_insert",harumarket_userBusket_Inserts,dataStores.authorization);
             }
             else{
-                toastr.error("로그인 유효기간이 만료되었습니다.");
+                toastr.error("로그아웃 되었습니다.");
                 dataStores.authorization = "";
                 router.go(0);
             }
@@ -326,7 +326,7 @@ const basket = async function(){
     }
 }
 
-const buy = function(){
+const buyF = function(){
     if(dataStores.authorization == ""){
         toastr.error("로그인 후에 해당 기능을 이용하여 주십시오.");
         return;
@@ -341,7 +341,20 @@ const buy = function(){
         const harumarket_userBuy = [];
 
         allData.forEach(function(data, index){
+            const harumarket_userBuyItem = {};
+            harumarket_userBuyItem["harumarket_product_index"] = Number(data.harumarket_product_index);
+            harumarket_userBuyItem["harumarket_productColor_index"] = data.harumarket_productColor_index !== undefined ? Number(data.harumarket_productColor_index) : 0;
+            harumarket_userBuyItem["harumarket_productSize_index"] = data.harumarket_productSize_index !== undefined ? Number(data.harumarket_productSize_index) : 0;
+            harumarket_userBuyItem["harumarket_product_count"] = Number(data.harumarket_product_account); 
+            harumarket_userBuy.push(harumarket_userBuyItem);
+        });
 
+        buyStores.harumarket_userBuy = harumarket_userBuy;
+        buyStores.haruMarket_buy_ready = true;
+
+        router.replace({
+            path: `/buy`,
+            query: { t: Date.now() } // 강제 변경 감지
         });
     }
 }
@@ -400,7 +413,7 @@ document.addEventListener('click', (event) => {
                             </p>
 
                             <div class="d-grid gap-2 d-md-block mt-2">
-                                <button class="btn btn-success btn-sm me-1" type="button" @click="buy">구매하기</button>
+                                <button class="btn btn-success btn-sm me-1" type="button" @click="buyF">구매하기</button>
                                 <button class="btn btn-primary btn-sm" type="button" @click="basket">장바구니 담기</button>
                             </div>
 

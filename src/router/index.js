@@ -145,6 +145,78 @@ const router = createRouter({
       },
       props: true
     },
+    {
+      path: '/change1',
+      name: 'change1',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/user/change1.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
+    {
+      path: '/change2',
+      name: 'change2',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/user/change2.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
+    {
+      path: '/basket',
+      name: 'basket',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/user/basket.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
+    {
+      path: '/order',
+      name: 'order',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/user/order.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
+    {
+      path: '/buy',
+      name: 'buy',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/buy/buy.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
+    {
+      path: '/buy_complete',
+      name: 'buy_complete',
+      //component: () => import('@/views/pages/product/product_list.vue'),
+      components: {
+        header: () => import('@/views/layout/HeadView.vue'),
+        nav: () => import('@/views/layout/NavView.vue'),
+        default: () => import('@/views/pages/buy/buy_complete.vue'),
+        footer: () => import('@/views/layout/FooterView.vue')
+      },
+      props: true
+    },
   ],
 })
 
