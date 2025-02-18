@@ -14,7 +14,7 @@ let page_views = ref([]);
 
 const category_select = function(){
   var formData = new FormData();
-  categorys.value = ajax_send(formData,`http://localhost:8080/common/category_select`,"GET");
+  categorys.value = ajax_send(formData,`https://back1.haru.company/common/category_select`,"GET");
 }
 
 const total_page = function(){
@@ -25,7 +25,7 @@ const total_page = function(){
     page: 0
   }
 
-  var data = ajax_send(formData,`http://localhost:8080/common/total_page2/${JSON.stringify(fdata)}`,"GET");
+  var data = ajax_send(formData,`https://back1.haru.company/common/total_page2/${JSON.stringify(fdata)}`,"GET");
 
   console.log(`토탈페이지 : ${data.totalPages}`);
 
@@ -62,7 +62,7 @@ const page_view2 = function(page){
 
   if(typeof page === "number"){
     //total_page();
-    page_views.value = ajax_send(formData,`http://localhost:8080/common/page_view2/${JSON.stringify(fdata)}`,"GET");
+    page_views.value = ajax_send(formData,`https://back1.haru.company/common/page_view2/${JSON.stringify(fdata)}`,"GET");
   }
   else{
     page_views.value = [];

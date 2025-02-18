@@ -38,7 +38,7 @@ const identity = function(){
         if (rsp.success) {
             rsp.haruMarket_user_id = haruMarket_user_id.value.value;
 
-            let data = await sendData('http://localhost:8080/common/pw_find',rsp,'post');
+            let data = await sendData('https://back1.haru.company/common/pw_find',rsp,'post');
             if(data.status ==400){
                 msg.value="아직 회원가입을 진행하지 않으시거나<br/>아이디를 잘못 입력하셨습니다.";
             }

@@ -29,7 +29,7 @@ const identity = function(){
     }, async function (rsp) { // callback
         console.log(rsp);
         if (rsp.success) {
-            let data = await sendData('http://localhost:8080/common/id_find',rsp,'post');
+            let data = await sendData('https://back1.haru.company/common/id_find',rsp,'post');
             if(data.status ==400){
                 msg.value="고객님의 명의로 가입된 계정이 없습니다.";
             }

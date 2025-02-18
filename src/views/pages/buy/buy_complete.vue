@@ -32,12 +32,12 @@ onMounted(async ()=>{
 })
 
 const product_information_view = async function(){
-    let responData = await httpRequest("POST","http://localhost:8080/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");
@@ -59,14 +59,14 @@ const srcExport = function(harumarket_product_picture){
 }
 
 const move = async function(url){
-    let data = await httpRequest("POST","http://localhost:8080/user/move2",null,dataStores.authorization);
+    let data = await httpRequest("POST","https://back1.haru.company/user/move2",null,dataStores.authorization);
     if(data.status != 200){
         console.log("토큰 유효하지 않음");
-        let data2 = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        let data2 = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(data2.status == 200){
         console.log("토큰 재발급");
         dataStores.authorization = data2.data.token;
-        data = await httpRequest("POST","http://localhost:8080/user/move2",null,dataStores.authorization);
+        data = await httpRequest("POST","https://back1.haru.company/user/move2",null,dataStores.authorization);
         router.replace({
             path: url,
             query: { t: Date.now() } // 강제 변경 감지

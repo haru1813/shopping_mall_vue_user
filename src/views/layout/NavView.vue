@@ -11,7 +11,7 @@ let categorys = ref([]);
 
 const harumarket_productcategory = async function () {
   var formData = new FormData();
-  categorys.value = await ajax_send(formData, "http://localhost:8080/common/category", "GET");
+  categorys.value = await ajax_send(formData, "https://back1.haru.company/common/category", "GET");
 };
 
 onBeforeMount(() => {

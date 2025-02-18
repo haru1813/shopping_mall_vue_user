@@ -17,12 +17,12 @@ if(dataStores.authorization == ''){
 const requestData = ref({});
 
 const init = async function(){
-    let responData = await httpRequest("POST","http://localhost:8080/user/id_find",null,dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/id_find",null,dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/id_find",null,dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/id_find",null,dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");
@@ -77,12 +77,12 @@ const change1 = async function(){
         haruMarket_user_detailAddress : haruMarket_user_detailAddress.value.value,
     }
 
-    let responData = await httpRequest("POST","http://localhost:8080/user/change1",reqData,dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/change1",reqData,dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/change1",reqData,dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/change1",reqData,dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");

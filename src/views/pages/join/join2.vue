@@ -30,7 +30,7 @@ const identity = function(){
         console.log(rsp);
         if (rsp.success) {
             var formData = new FormData();
-            var data = ajax_send(formData,`http://localhost:8080/common/join_informationExport/${JSON.stringify(rsp)}`,"GET");
+            var data = ajax_send(formData,`https://back1.haru.company/common/join_informationExport/${JSON.stringify(rsp)}`,"GET");
             join.haruMarket_user_birthday = data.birthday;
             join.haruMarket_user_gender = data.gender;
             join.haruMarket_user_name = data.name;

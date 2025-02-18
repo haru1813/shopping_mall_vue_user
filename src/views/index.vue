@@ -13,11 +13,11 @@ let advertise_items = ref([]);
 let new_products_items = ref([]);
 const advertise_view = function(){
   var formData = new FormData();
-  advertise_items.value = ajax_send(formData,"http://localhost:8080/common/advertise","GET");
+  advertise_items.value = ajax_send(formData,"https://back1.haru.company/common/advertise","GET");
 }
 const new_products_view = function(){
   var formData = new FormData();
-  new_products_items.value = ajax_send(formData,"http://localhost:8080/common/new_products","GET");
+  new_products_items.value = ajax_send(formData,"https://back1.haru.company/common/new_products","GET");
 }
 
 onMounted(() => {

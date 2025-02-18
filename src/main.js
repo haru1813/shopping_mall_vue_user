@@ -15,3 +15,5 @@ app.use(pinia)
 app.use(router)
 
 app.mount('#app')
+
+app.config.devtools = false;

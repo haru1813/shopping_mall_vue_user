@@ -15,13 +15,13 @@ const productId = ref(route.params.id);
 
 const haruMarket_productCategory_name_view = function(){
   var formData = new FormData();
-  var data = ajax_send(formData,`http://localhost:8080/common/haruMarket_productCategory_name/${dataStores.haruMarket_productCategory_index}`,"GET");
+  var data = ajax_send(formData,`https://back1.haru.company/common/haruMarket_productCategory_name/${dataStores.haruMarket_productCategory_index}`,"GET");
   haruMarket_productCategory_name.value = data.haruMarket_productCategory_name;
 }
 
 const total_page = function(){
   var formData = new FormData();
-  var data = ajax_send(formData,`http://localhost:8080/common/total_page/${dataStores.haruMarket_productCategory_index}`,"GET");
+  var data = ajax_send(formData,`https://back1.haru.company/common/total_page/${dataStores.haruMarket_productCategory_index}`,"GET");
   
   $('#pagination-demo').twbsPagination('destroy');
 
@@ -38,7 +38,7 @@ let page_views = ref([]);
 
 const page_view = function(page){
   var formData = new FormData();
-  page_views.value = ajax_send(formData,`http://localhost:8080/common/page_view/${dataStores.haruMarket_productCategory_index}/${page}`,"GET");
+  page_views.value = ajax_send(formData,`https://back1.haru.company/common/page_view/${dataStores.haruMarket_productCategory_index}/${page}`,"GET");
 }
 
 const srcExport = function(harumarket_product_picture){

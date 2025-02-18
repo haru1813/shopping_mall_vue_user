@@ -36,7 +36,7 @@ const login = function(){
     params.append('haruMarket_user_id', haruMarket_user_id.value.value);
     params.append('haruMarket_user_pw', haruMarket_user_pw.value.value);
 
-    axios.post('http://localhost:8080/login', params, {
+    axios.post('https://back1.haru.company/login', params, {
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
     }

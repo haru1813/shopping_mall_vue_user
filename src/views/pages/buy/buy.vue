@@ -44,12 +44,12 @@ onMounted(async ()=>{
 })
 
 const information_find = async function(){
-    let responData = await httpRequest("POST","http://localhost:8080/user/information_find",null,dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/information_find",null,dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/information_find",null,dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/information_find",null,dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");
@@ -79,12 +79,12 @@ const information_setting = function(event){
 }
 
 const product_information_view = async function(){
-    let responData = await httpRequest("POST","http://localhost:8080/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/product_information_view",[...buyStores.harumarket_userBuy],dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");
@@ -166,12 +166,12 @@ const purchase = async function(pay_method_value){
         return;
     }
 
-    let responData = await httpRequest("POST","http://localhost:8080/user/product_buy_try",[...buyStores.harumarket_userBuy],dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_try",[...buyStores.harumarket_userBuy],dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/product_buy_try",[...buyStores.harumarket_userBuy],dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_try",[...buyStores.harumarket_userBuy],dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");
@@ -213,12 +213,12 @@ const purchase = async function(pay_method_value){
                         haruMarket_BuyMaster_amount : rsp.paid_amount
                     }
 
-                    let responData = await httpRequest("POST","http://localhost:8080/user/product_buy_master",requestData,dataStores.authorization);
+                    let responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_master",requestData,dataStores.authorization);
                     if(responData.status != 200){
-                        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+                        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
                         if(responData.status == 200){
                             dataStores.authorization = responData.data.token;
-                            responData = await httpRequest("POST","http://localhost:8080/user/product_buy_master",requestData,dataStores.authorization);
+                            responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_master",requestData,dataStores.authorization);
                         }
                         else{
                             toastr.error("로그아웃 되었습니다.");
@@ -239,12 +239,12 @@ const purchase = async function(pay_method_value){
                         };
                     });
 
-                    responData = await httpRequest("POST","http://localhost:8080/user/product_buy_detail",tharumarket_userBuy,dataStores.authorization);
+                    responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_detail",tharumarket_userBuy,dataStores.authorization);
                     if(responData.status != 200){
-                        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+                        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
                         if(responData.status == 200){
                             dataStores.authorization = responData.data.token;
-                            responData = await httpRequest("POST","http://localhost:8080/user/product_buy_detail",tharumarket_userBuy,dataStores.authorization);
+                            responData = await httpRequest("POST","https://back1.haru.company/user/product_buy_detail",tharumarket_userBuy,dataStores.authorization);
                         }
                         else{
                             toastr.error("로그아웃 되었습니다.");
@@ -259,12 +259,12 @@ const purchase = async function(pay_method_value){
                     let tharumarket_userBasket_indexs = [...buyStores.harumarket_userBasket_indexs];
 
                     if(tharumarket_userBasket_indexs.length > 0){
-                        responData = await httpRequest("POST","http://localhost:8080/user/userBasket_delete",tharumarket_userBasket_indexs,dataStores.authorization);
+                        responData = await httpRequest("POST","https://back1.haru.company/user/userBasket_delete",tharumarket_userBasket_indexs,dataStores.authorization);
                         if(responData.status != 200){
-                            responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+                            responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
                             if(responData.status == 200){
                                 dataStores.authorization = responData.data.token;
-                                responData = await httpRequest("POST","http://localhost:8080/user/userBasket_delete",tharumarket_userBasket_indexs,dataStores.authorization);
+                                responData = await httpRequest("POST","https://back1.haru.company/user/userBasket_delete",tharumarket_userBasket_indexs,dataStores.authorization);
                             }
                             else{
                                 toastr.error("로그아웃 되었습니다.");

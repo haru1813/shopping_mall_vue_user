@@ -29,14 +29,14 @@ const logout = function(){
 }
 
 const move2 = async function(url){
-  let data = await httpRequest("POST","http://localhost:8080/user/move2",null,dataStores.authorization);
+  let data = await httpRequest("POST","https://back1.haru.company/user/move2",null,dataStores.authorization);
   if(data.status != 200){
     console.log("토큰 유효하지 않음");
-    let data2 = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+    let data2 = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
     if(data2.status == 200){
       console.log("토큰 재발급");
       dataStores.authorization = data2.data.token;
-      data = await httpRequest("POST","http://localhost:8080/user/move2",null,dataStores.authorization);
+      data = await httpRequest("POST","https://back1.haru.company/user/move2",null,dataStores.authorization);
       router.replace({
         path: url,
         query: { t: Date.now() } // 강제 변경 감지

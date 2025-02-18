@@ -94,12 +94,12 @@ onMounted(async () => {
 });
 
 const order_select = async function(){
-    let responData = await httpRequest("POST","http://localhost:8080/user/order_select",null,dataStores.authorization);
+    let responData = await httpRequest("POST","https://back1.haru.company/user/order_select",null,dataStores.authorization);
     if(responData.status != 200){
-        responData = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+        responData = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
         if(responData.status == 200){
             dataStores.authorization = responData.data.token;
-            responData = await httpRequest("POST","http://localhost:8080/user/order_select",null,dataStores.authorization);
+            responData = await httpRequest("POST","https://back1.haru.company/user/order_select",null,dataStores.authorization);
         }
         else{
             toastr.error("로그아웃 되었습니다.");

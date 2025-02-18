@@ -14,7 +14,7 @@ const optionSelect = async function(url,body,method){
     return await sendData(url,body,method);
 }
 
-productData.value = ajax_send(null,`http://localhost:8080/common/product_view/${dataStores.harumarket_product_index}`,"GET");
+productData.value = ajax_send(null,`https://back1.haru.company/common/product_view/${dataStores.harumarket_product_index}`,"GET");
 
 const harumarket_product_picture = computed(()=>{
     const regex = /<img[^>]*src="([^"]*)"/g;
@@ -52,7 +52,7 @@ const harumarket_product_colorsf = async function() {
         option_name:"harumarket_productColor_index",
         }
 
-        let respondata = await optionSelect("http://localhost:8080/common/option_select",fdata,"POST");
+        let respondata = await optionSelect("https://back1.haru.company/common/option_select",fdata,"POST");
         console.log(respondata.data);
         harumarket_product_colors.value = respondata.data;  
     }
@@ -71,7 +71,7 @@ const harumarket_product_sizesf = async function(){
             option_name:"harumarket_productSize_index",
         }
         
-        let respondata = await optionSelect("http://localhost:8080/common/option_select",fdata,"POST");
+        let respondata = await optionSelect("https://back1.haru.company/common/option_select",fdata,"POST");
         console.log(respondata.data);
         harumarket_product_sizes.value = respondata.data;  
     }
@@ -303,16 +303,16 @@ const basket = async function(){
             harumarket_userBusket_Inserts.push(harumarket_userBusket_Insert);
         });
 
-        let data = await httpRequest("POST","http://localhost:8080/user/busket_insert",harumarket_userBusket_Inserts,dataStores.authorization);
+        let data = await httpRequest("POST","https://back1.haru.company/user/busket_insert",harumarket_userBusket_Inserts,dataStores.authorization);
         console.log(data.status);
         if(data.status == 500){
             toastr.error("장바구니는 10개까지만 등록 가능합니다.");
         }
         if(data.status != 200){
-            let data2 = await httpRequest("POST","http://localhost:8080/common/token_refresh",null,dataStores.authorization);
+            let data2 = await httpRequest("POST","https://back1.haru.company/common/token_refresh",null,dataStores.authorization);
             if(data2.status == 200){
                 dataStores.authorization = data2.data.token;
-                data = await httpRequest("POST","http://localhost:8080/user/busket_insert",harumarket_userBusket_Inserts,dataStores.authorization);
+                data = await httpRequest("POST","https://back1.haru.company/user/busket_insert",harumarket_userBusket_Inserts,dataStores.authorization);
             }
             else{
                 toastr.error("로그아웃 되었습니다.");

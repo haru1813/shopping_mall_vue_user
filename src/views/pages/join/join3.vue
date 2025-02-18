@@ -122,10 +122,10 @@ const joinf = function(){
         haruMarket_user_uniqueKey : join.haruMarket_user_uniqueKey,
     }
 
-    //var data = ajax_send(null,`http://localhost:8080/common/join/${JSON.stringify(fdata)}`,"POST");
+    //var data = ajax_send(null,`https://back1.haru.company/common/join/${JSON.stringify(fdata)}`,"POST");
     const sendData = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/common/join', JSON.stringify(fdata), {
+            const response = await axios.post('https://back1.haru.company/common/join', JSON.stringify(fdata), {
             headers: {
                 'Content-Type': 'application/json'
             }

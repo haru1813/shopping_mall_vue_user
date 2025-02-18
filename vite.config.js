@@ -8,7 +8,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    //vueDevTools(),
   ],
   resolve: {
     alias: {
@@ -18,5 +18,26 @@ export default defineConfig({
   },
   server: {
     allowedHosts: true,
-  }
+  },
+  // devServer:{
+  //   port: 80,
+  //   webSocketServer: false, //사용하지 않게 변경
+  //   proxy : {
+  //     '/' : {
+  //       target : 'https://back1.haru.company',
+  //       changeOrigin : true,
+  //       ws : true
+  //     }
+  //   },
+  //   liveReload: true,
+  //   host : 'localhost',
+  //   allowedHosts: "all",
+  //   open : true,
+  //   client : {
+  //     // logging: 'log',
+  //     overlay: true,
+  //     webSocketURL: 'wss://localhost:8080/ws' // Add this
+  //   },
+  //   compress : true
+  // }
 })
